@@ -7,7 +7,6 @@ RUN apt-get update \
     && apt-get clean \
     && easy_install pip
 
-
 # kubectl and aws cli
 
 RUN apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
@@ -61,3 +60,7 @@ RUN apt-get update \
 ENV PATH="/root/.local/bin:${PATH}"
 
 COPY m2-settings.xml $MAVEN_CONFIG/settings.xml
+
+# npm for frontend builds
+RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+RUN apt-get install nodejs
